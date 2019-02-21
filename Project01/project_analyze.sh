@@ -6,7 +6,7 @@ echo "2) ""Create Todo Log"
 echo "3) ""Count File Types"
 echo "4) ""Create GitHub Directory"
 echo "5) ""Have some fun!"
-echo "6) ""Clone Directory To GitHub"
+echo "6) ""Backup Directory as Zip File & Upload to GitHub"
 read task
 if [ $task == "1" ] ; then
  	echo "Deleting Temporary Files"
@@ -59,6 +59,10 @@ elif [ $task = "6" ] ; then
         filename=ug-$(date +%-Y%-m%-d)-$(date +%-T).tgz
         tar --create --gzip --file=$destination$filename $source
 	echo "It has been cloned"
+	git add -A
+	git commit -m "Backup up files"
+	git push -f origin master
+	echo "The zip files has been uploaded to GitHub"
 # elif [ $task = "6" ] ; then
 #	echo "Generating Error Log"
 #	find . -name "*.hs" -exec ghc -fno-code {} \; &> compile_fail.log
