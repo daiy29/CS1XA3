@@ -61,7 +61,7 @@ elif [ $task = "6" ] ; then # Task 6 backs up files and uploads them directory t
 	read destn 
 	source=~/CS1XA3/Project01
         destination=~/CS1XA3/$destn
-        filename=ug-$(date +%-Y%-m%-d)-$(date +%-T).tgz #File name created with name of cloning
+        filename=ug-$(date +%-Y%-m%-d)-$(date +%-T).tgz #File name created with date of cloning
         tar --create --gzip --file=$destination$filename $source
 	echo "It has been cloned"
 	git add -A
