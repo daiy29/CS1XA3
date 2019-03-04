@@ -51,8 +51,8 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div []
-    [ input [ placeholder "Text to reverse", value model.content, onInput Change ] [],
-      input [ placeholder "String2", value model.content2, onInput Change2 ] []
+    [ input [ placeholder "String 1", value model.content, onInput Change ] [],
+      input [ placeholder "String 2", value model.content2, onInput Change2 ] []
  
     , div [] [ text  (model.content), text " : ", text (model.content2) ]
     ]
