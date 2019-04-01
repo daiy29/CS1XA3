@@ -1,0 +1,74 @@
+body{
+  background-image: url(lines.png), url(solved.png), url(solved2.png), url(solved3.png), url(xs.png) , url(os.png), url(background.jpg);
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 800px 560px, 600px 460px, 600px 460px, 500px 380px, 500px 380px, 500px 380px, cover;
+  background-position: 51% 97%, 12% 75%, 100% 75%, 50% 25%, 10% 10% , 90% 10%, center;
+}
+h1{
+  text-align: center;
+  position: relative;
+  right: 10px;
+  top: 30px; 
+  color: #ffffff;
+  font-size: 100px;
+}
+
+h2{
+  text-align: center;
+  position: relative;
+  right: 600px;
+  top: 30px; 
+  color: #ffffff;
+  font-size: 50px;
+}
+
+h3{
+  text-align: center;
+  position: relative;
+  left: 600px;
+  bottom: 72px; 
+  color: #ffffff;
+  font-size: 50px;
+
+}
+
+p1{
+  text-align: center;
+  position: relative;
+  left: 720px;
+  bottom: 100px;
+  color: #ffffff;
+  font-size: 180px;
+  line-height: 200px
+}
+
+p2{
+  text-align: center;
+  position: relative;
+  left: 1820px;
+  bottom: 100px;
+  color: #ffffff;
+  font-size: 180px;
+  line-height: 200px
+}
+
+#array{
+  width: 700px;
+  margin: auto; 
+}
+
+#listOfSquares li{
+  float: left;
+  margin: 20px;
+  height: 140px;
+  width: 140px;
+  font-size: 80px;
+  color: #ffffff;
+  list-style: none;
+  text-align: center;
+	
+}
+
+li:hover{
+  cursor: pointer;
+}
