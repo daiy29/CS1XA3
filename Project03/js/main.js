@@ -4,6 +4,7 @@ var time = 2;
 var bonusTime = 1;
 var points = 0;
 var inGame = 1;
+
 var input = document.querySelector('#');
 var current = document.querySelector('#');
 var score = document.querySelector('#');
@@ -43,7 +44,7 @@ function init()
   showList(currentList);
   input.addEventListener('input', play);
   setInterval(timer, 1000);
-  setInterval(play, 50);
+  setInterval(play, 100);
 }
 
 function play()
@@ -51,7 +52,6 @@ function play()
 	if(inGame == 1)
 	{
 		checkWin();
-		updateMessage();
 		score.innerHTML = points;
 		diffAdjust();
 	}
@@ -74,6 +74,7 @@ function reset()
 {
 	bonusTime = 1;
 	points = 0;
+	currentList = list1;
 	msg.innerHTML = 'Game Over';
 }
 
@@ -101,20 +102,15 @@ function diffAdjust()
 }
 
 function updateMessage(){
-	if (time == 0){
-		msg.innerHTML = 'Game Over';
-	}
-	else if (input.value == current.innerHTML){
-		if (points == 10 || points == 20 || points == 30 || points == 40 || points == 60){
+
+		if ((points == 10) || (points == 20) || (points == 30) || (points == 40) || (points == 60))
+		{
 			msg.innerHTML = 'Difficulty increased!';
 		}
 		else{
 			msg.innerHTML = 'Noice';
 		}
-	}
-	else{
-		msg.innerHTML = ''
-	}
+
 }
 
 function timer()
@@ -140,6 +136,7 @@ function checkWin()
 		input.value = '';
 		showList(currentList);
 		seconds.innerHTML = bonusTime;
+		updateMessage();
 	}
 
 }
