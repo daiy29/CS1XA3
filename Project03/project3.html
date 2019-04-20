@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Type Racing</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+</head>
+<div><header class="bg-light text-center p-3 mb-5">
+<h1 class="text-dark">Type Racing</h1>
+</header></div>
+<div>
+<div class="container text-center">
+<p>Type The Given Word Within <span id="seconds" class="badge badge-danger">2</span> Seconds:</p>
+<h2 id="current" class="strong">hello</h2>
+  <br>
+<input id="input" class="form-control form-control-lg" type="text" autofocus="" placeholder="Start typing..." />
+<h3 id="msg" class="mt-3">&nbsp;</h3>
+<!-- Time & Score Columns -->
+<h4>Time Left: <span id="time">0</span> &nbsp;&nbsp; Score: <span id="score">0</span> &nbsp;&nbsp; Attempts: <span id="retryscore">1</span></h4>
+  
+<div class="row mt-5">
+<div class="col-md-12">
+<div class="card card-body bg-light text-dark">
+<h5>How To:</h5>
+<p>Type the given word or phrase within the alotted time given. Any unused time will carry over the future rounds. There are big difficulty spikes every 10th round, but to compensate for it you will be given bonus time. To restart the game after a game over, type the current word. This will reset the difficulty, as well as your score and start the timer for your next run.</p>
+</div>
+</div>
+</div>
+  </div>
+  </div>
+
+
+
+<script>
+window.onload = init;
+
+var time = 2;
+var bonusTime = 1;
+var points = 0;
+var inGame = 1;
+var retries = 1;
+
+var input = document.querySelector('#input');
+var current = document.querySelector('#current');
+var score = document.querySelector('#score');
+var countDown = document.querySelector('#time');
+var msg = document.querySelector('#msg');
+var seconds = document.querySelector('#seconds');
+var retryscore = document.querySelector('#retryscore');
+
+var list1 = [
+'Cat',
+'Doug',
+'Easy',
+'Pig',
+'Dog',
+'Fur',
+'Song',
+'Car',
+'Math',
+'Park',
+'In',
+'The',
+'Elm'
+];
+
+var list2 = [
+'Curtis',
+'Computer',
+'Science',
+'Slack',
+'Django',
+'Javascript',
+'HTML',
+'Ubuntu',
+'Secure',
+'Encrypt',
+'Bash',
+'Script'
+];
+
+var list3 = [
+'Maximizing',
+'Kolkhoznik',
+'Kibbutznik',
+'Jarovizing',
+'Japanizing',
+'Jackknives',
+'Jackknifed',
+'Embezzlers',
+'Crackajack'
+];
+
+var list4 = [
+'CaPiTaL',
+'1337 SP3AK',
+'xDDDD',
+'cd CS1XA3',
+'git add -A',
+'git push origin master',
+'Pizza!',
+'0wo',
+'Toilet Paper'
+];
+
+var list5 = [
+'This is literally impossible',
+'You can not keep up',
+'200 words per min btw',
+'learned to type from maplestory',
+'learned to type from runescape',
+'The quick brown fox jumps over the lazy dog',
+'The quick fox brown jumps over the dog lazy',
+'I thnik theres a typo here',
+
+];
+
+var list6 = [
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
+'sed do eiusmod tempor incididunt ut labore',
+'et dolore magna aliqua. Ut enim ad minim',
+'veniam, quis nostrud exercitation ullamco laboris',
+'nisi ut aliquip ex ea commodo consequat.',
+'Duis aute irure dolor in reprehenderit in voluptate',
+'velit esse cillum dolore eu fugiat nulla pariatur.',
+'Excepteur sint occaecat cupidatat non proident,',
+'sunt in culpa qui officia deserunt mollit anim id est laborum.'
+];
+
+var currentList = list1;
+
+function init()
+{
+  seconds.innerHTML = bonusTime;
+  showList(currentList);
+  input.addEventListener('input', play);
+  setInterval(timer, 1000);
+  setInterval(play, 100);
+}
+
+function play()
+{
+	if(inGame == 1)
+	{
+		checkWin();
+		score.innerHTML = points;
+		diffAdjust();
+	}
+	else{
+		reset()
+		if (input.value === current.innerHTML){
+			retries++;
+		    retryscore.innerHTML = retries;
+			inGame = 1;
+			time = 2;
+		}
+	}
+
+}
+function showList(wordList)
+{
+	var item = Math.floor(Math.random()*wordList.length);
+	current.innerHTML = wordList[item];
+}
+
+function reset()
+{
+	bonusTime = 1;
+	points = 0;
+	currentList = list1;
+	msg.innerHTML = 'Game Over';
+}
+
+function diffAdjust()
+{
+
+	if(points >= 10 && points < 20){
+		currentList = list2;
+	}
+	else if (points >= 20 && points < 30){
+		currentList = list3;
+		bonusTime = 2;
+	}
+	else if (points >= 30 && points < 40){
+		currentList = list4;
+		bonusTime = 2;
+	}
+	else if (points >= 40 && points < 60){
+		currentList = list5;
+		bonusTime = 3;
+	}
+	else if (points >= 60){
+		currentList = list6;
+		bonusTime = 4;
+	}	
+}
+
+function updateMessage(){
+
+		if ((points == 10) || (points == 20) || (points == 30) || (points == 40) || (points == 60))
+		{
+			msg.innerHTML = 'Difficulty increased!';
+		}
+		else{
+			var rngmsg = Math.floor(Math.random()*3);
+				if (rngmsg == 1)
+			msg.innerHTML = 'Noice';
+			    else if (rngmsg == 2)
+			msg.innerHTML = 'EZ4NCE';
+		        else
+		    msg.innerHTML = 'Gottem';
+		}
+
+}
+
+function timer()
+{
+	if (time > 0 && inGame == 1){
+		time--;
+	}
+	else if (time == 0){
+		inGame = 0;
+	}
+
+	countDown.innerHTML = time;
+}
+
+function checkWin()
+{
+	if (input.value === current.innerHTML) {
+		points++;
+		time += bonusTime;
+		input.value = '';
+		showList(currentList);
+		seconds.innerHTML = bonusTime;
+		updateMessage();
+	}
+
+}
+
+</script>
+</html>
+
