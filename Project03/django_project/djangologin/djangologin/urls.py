@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url,include
 from loginapp import views
+from gameBoardApp import dispviews
 
 urlpatterns = [
     path('e/daiy29/admin/', admin.site.urls),
@@ -24,4 +25,6 @@ urlpatterns = [
     url(r'^e/daiy29/special/',views.special,name='special'),
     url(r'^e/daiy29/loginapp/',include('loginapp.urls')),
     url(r'^e/daiy29/logout/$', views.user_logout, name='logout'),
+    url(r'^e/daiy29/playgame/$', dispviews.createpost, name='createpost'),
+    url(r'^e/daiy29/leaderboard/$', dispviews.showboard, name='leaderboard'), 
 ]

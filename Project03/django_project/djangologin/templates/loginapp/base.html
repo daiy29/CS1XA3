@@ -24,6 +24,7 @@
             <li><a href="{% url 'createpost' %}">Play Game</a></li>
           {% else %}
             <li><a class="navbar-link" href="{% url 'loginapp:user_login' %}">Log in to Play</a></li>
+	  {% endif %}
 </ul>
       </div>
     </nav>
