@@ -14,13 +14,9 @@ def createpost(request):
                 return render(request, 'gameBoardApp/playgame.html')  
 
         else:
-                return render(request,'gameBoardApp/leaderboard.html')
+                return render(request,'gameBoardApp/playgame.html')
 
-def showboard(request):
- 
+def showboard(request): 
     allscores= Post.objects.all()
-    
     context= {'allscores': allscores}
-
-        
     return render(request, 'gameBoardApp/scoreboard.html', context)

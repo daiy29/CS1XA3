@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^e/daiy29/loginapp/',include('loginapp.urls')),
     url(r'^e/daiy29/logout/$', views.user_logout, name='logout'),
     url(r'^e/daiy29/playgame/$', dispviews.createpost, name='createpost'),
-    url(r'^e/daiy29/leaderboard/$', dispviews.showboard, name='leaderboard'), 
+    url(r'^e/daiy29/scoreboard/$', dispviews.showboard, name='showboard'), 
 ]
