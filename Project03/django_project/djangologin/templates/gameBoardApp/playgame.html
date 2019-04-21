@@ -37,12 +37,12 @@
 </div>
 <br><br>
 
-<form action="" method="POST">
+<form name="myform" action="" method="POST" onsubmit="DoSubmit();">
 {% csrf_token %}
 <!-- Invisible submissions-->
-<input type="hidden" value={{ user.username }} name="title"/>
-<input type="hidden" name="content" id="highscore"/>
-<button type="submit" class="btn btn-danger btn-lg btn-block">Submit Score!</button>
+<input type="text" value={{ user.username }} name="title"/>
+<input type="text" name="content" value="0" />
+<button type="submit" name="submit" class="btn btn-danger btn-lg btn-block">Submit Score!</button>
 </form>
   </div>
   </div>
@@ -52,13 +52,6 @@
 <script>
 window.onload = init;
 
-var time = 2;
-var bonusTime = 1;
-var points = 0;
-var inGame = 1;
-var retries = 1;
-var hiscore = 0;
-
 var input = document.querySelector('#input');
 var current = document.querySelector('#current');
 var score = document.querySelector('#score');
@@ -67,6 +60,13 @@ var msg = document.querySelector('#msg');
 var seconds = document.querySelector('#seconds');
 var retryscore = document.querySelector('#retryscore');
 var highscore = document.querySelector('#highscore');
+
+var time = 2;
+var bonusTime = 1;
+var points = 0;
+var inGame = 1;
+var retries = 1;
+var hiscore = 0;
 
 var list1 = [
 'Cat',
@@ -265,6 +265,10 @@ function checkHiScore()
 	if (points > hiscore){
 		hiscore = points;
 	}
+}
+
+function DoSubmit(){
+	document.myform.content.value = hiscore;
 }
 
 </script>
