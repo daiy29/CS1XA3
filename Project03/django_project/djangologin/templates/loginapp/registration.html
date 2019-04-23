@@ -51,11 +51,11 @@ input[type=submit]:hover {
 <center>
 <h1 style="color: white; font-size: 300%">Register Here</h1>
 </center>
-<div class="container2" style="color: white; font-size: 150%">
+<div class="container2" style="font-size: 150%">
       {% if registered %} 
       {% elif user.is_authenticated %}
         <center>
-        <h1>Thank you for registering!</h1>
+        <h1 style="color: white">Thank you for registering!</h1>
         </center>
       {% else %}
           <form enctype="multipart/form-data" method="POST">
