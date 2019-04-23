@@ -51,18 +51,21 @@ input[type=submit]:hover {
 </head>
 <body style="background-image: url(https://i.imgur.com/hXm7PaF.png); background-repeat: no-repeat; background-size: cover;">
 
-<br><br><br><br><br>
+<br><br>
+<center>
+<h1 style="color:white; font-size:300%"> Log In Here </h1>
+</center>
 <div class="container2">
   <form method="post" action="{% url 'loginapp:user_login' %}">
     {% csrf_token %}
-    <label for="username" style="color:white; font-size:150%; outline-style: solid; outline-color: white; outline-width: thin;">Username:</label>
-    <input type="text" name="username" placeholder="Username">
+    <label for="username" style="color:white; font-size:150%;">Username:</label>
+    <input type="text" name="username" placeholder="Username" style="font-size:150%">
 
-    <label for="password" style="color:white; font-size:150%; outline-style: solid; outline-color: white; outline-width: thin;">Password:</label>
-    <input type="password" name="password" placeholder="Password">
+    <label for="password" style="color:white; font-size:150%;">Password:</label>
+    <input type="password" name="password" placeholder="Password" style="font-size:150%">
 
   
-    <input type="submit" value="Log In" class="btn btn-danger btn-lg btn-block">
+    <input type="submit" value="Log In" class="btn btn-lg btn-block">
   </form>
 </div>
 

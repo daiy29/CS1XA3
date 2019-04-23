@@ -1,21 +1,73 @@
-{% extends "loginapp/base.html" %}
+    
+{% extends 'loginapp/base.html' %}
 {% load staticfiles %}
 {% block body_block %}
-  <div class="container">
-    <div class="jumbotron">
-      {% if registered %}
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=password], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 3px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+.container2 {
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 80px;
+}
+</style>
+</head>
+<body style="background-image: url(https://i.imgur.com/hXm7PaF.png); background-repeat: no-repeat; background-size: cover;">
+
+<br><br>
+<center>
+<h1 style="color: white; font-size: 300%">Register Here</h1>
+</center>
+<div class="container2" style="color: white; font-size: 150%">
+      {% if registered %} 
+      {% elif user.is_authenticated %}
+        <center>
         <h1>Thank you for registering!</h1>
+        </center>
       {% else %}
-        <h1>Register Here</h1>
-        <h3>Just fill out the form.</h3>
-<form enctype="multipart/form-data" method="POST">
+          <form enctype="multipart/form-data" method="POST">
           {% csrf_token %}
           {{ user_form.as_p }}
-          {{ profile_form.as_p }}
-          <input type="submit" name="" value="Register">
+          <input type="submit" name="" value="Register" class="btn btn-lg btn-block">
         </form>
-        
-      {% endif %}
-    </div>
-  </div>
+{% endif %}
+</div>
 {% endblock %}
+
+</body>
+</html>
+
+
