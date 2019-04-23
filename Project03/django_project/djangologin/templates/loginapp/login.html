@@ -1,11 +1,24 @@
+    
 {% extends 'loginapp/base.html' %}
 {% block body_block %}
- 
- <style>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 
 input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=password], select, textarea {
   width: 100%;
   padding: 12px;
   border: 3px solid #ccc;
@@ -29,26 +42,31 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-.container {
-  border-radius: 10px;
-  background-color: #f2f2f2;
-  padding: 20px;
- 
+.container2 {
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 80px;
 }
 </style>
 </head>
-
 <body style="background-image: url(https://i.imgur.com/hXm7PaF.png); background-repeat: no-repeat; background-size: cover;">
-<div class="container">
-<form method="post" action="{% url 'loginapp:user_login' %}">
-          {% csrf_token %}
-          <label for="username">Username:</label>
-          <input type="text" name="username" placeholder="Username">
-<label for="password">Password:</label>
-          <input type="text" name="password" placeholder="Password">
-<input type="submit" name="" value="Login">
-</form>
+
+<br><br><br><br><br>
+<div class="container2">
+  <form method="post" action="{% url 'loginapp:user_login' %}">
+    {% csrf_token %}
+    <label for="username" style="color:white; font-size:150%; outline-style: solid; outline-color: white; outline-width: thin;">Username:</label>
+    <input type="text" name="username" placeholder="Username">
+
+    <label for="password" style="color:white; font-size:150%; outline-style: solid; outline-color: white; outline-width: thin;">Password:</label>
+    <input type="password" name="password" placeholder="Password">
+
+  
+    <input type="submit" value="Log In" class="btn btn-danger btn-lg btn-block">
+  </form>
 </div>
 
 </body>
+</html>
+
 {% endblock %}
