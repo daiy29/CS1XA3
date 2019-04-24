@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,8 +39,8 @@
 <form name="myform" action="" method="POST" onsubmit="DoSubmit();">
 {% csrf_token %}
 <!-- Invisible submissions-->
-<input type="text" value={{ user.username }} name="title"/>
-<input type="text" name="content" value="0" />
+<input type="hidden" value={{ user.username }} name="title"/>
+<input type="hidden" name="content" value="0" />
 <button type="submit" name="submit" class="btn btn-danger btn-lg btn-block">Submit Score!</button>
 </form>
   </div>
@@ -51,7 +50,6 @@
 
 <script>
 window.onload = init;
-
 var input = document.querySelector('#input');
 var current = document.querySelector('#current');
 var score = document.querySelector('#score');
@@ -60,14 +58,12 @@ var msg = document.querySelector('#msg');
 var seconds = document.querySelector('#seconds');
 var retryscore = document.querySelector('#retryscore');
 var highscore = document.querySelector('#highscore');
-
 var time = 2;
 var bonusTime = 1;
 var points = 0;
 var inGame = 1;
 var retries = 1;
 var hiscore = 0;
-
 var list1 = [
 'Cat',
 'Doug',
@@ -83,7 +79,6 @@ var list1 = [
 'The',
 'Elm'
 ];
-
 var list2 = [
 'Curtis',
 'Computer',
@@ -98,7 +93,6 @@ var list2 = [
 'Bash',
 'Script'
 ];
-
 var list3 = [
 'Maximizing',
 'Kolkhoznik',
@@ -110,7 +104,6 @@ var list3 = [
 'Embezzlers',
 'Crackajack'
 ];
-
 var list4 = [
 'CaPiTaL',
 '1337 SP3AK',
@@ -122,7 +115,6 @@ var list4 = [
 '0wo',
 'Toilet Paper'
 ];
-
 var list5 = [
 'This is literally impossible',
 'You can not keep up',
@@ -132,9 +124,7 @@ var list5 = [
 'The quick brown fox jumps over the lazy dog',
 'The quick fox brown jumps over the dog lazy',
 'I thnik theres a typo here',
-
 ];
-
 var list6 = [
 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
 'sed do eiusmod tempor incididunt ut labore',
@@ -146,9 +136,7 @@ var list6 = [
 'Excepteur sint occaecat cupidatat non proident,',
 'sunt in culpa qui officia deserunt mollit anim id est laborum.'
 ];
-
 var currentList = list1;
-
 function init()
 {
   seconds.innerHTML = bonusTime;
@@ -157,7 +145,6 @@ function init()
   setInterval(timer, 1000);
   setInterval(play, 100);
 }
-
 function play()
 {
 	if(inGame == 1)
@@ -177,14 +164,12 @@ function play()
 			time = 2;
 		}
 	}
-
 }
 function showList(wordList)
 {
 	var item = Math.floor(Math.random()*wordList.length);
 	current.innerHTML = wordList[item];
 }
-
 function reset()
 {
 	bonusTime = 1;
@@ -192,10 +177,8 @@ function reset()
 	currentList = list1;
 	msg.innerHTML = 'Game Over';
 }
-
 function diffAdjust()
 {
-
 	if(points >= 10 && points < 20){
 		currentList = list2;
 	}
@@ -216,9 +199,7 @@ function diffAdjust()
 		bonusTime = 4;
 	}	
 }
-
 function updateMessage(){
-
 		if ((points == 10) || (points == 20) || (points == 30) || (points == 40) || (points == 60))
 		{
 			msg.innerHTML = 'Difficulty increased!';
@@ -232,9 +213,7 @@ function updateMessage(){
 		        else
 		    msg.innerHTML = 'Gottem';
 		}
-
 }
-
 function timer()
 {
 	if (time > 0 && inGame == 1){
@@ -243,10 +222,8 @@ function timer()
 	else if (time == 0){
 		inGame = 0;
 	}
-
 	countDown.innerHTML = time;
 }
-
 function checkWin()
 {
 	if (input.value === current.innerHTML) {
@@ -257,20 +234,15 @@ function checkWin()
 		seconds.innerHTML = bonusTime;
 		updateMessage();
 	}
-
 }
-
 function checkHiScore()
 {
 	if (points > hiscore){
 		hiscore = points;
 	}
 }
-
 function DoSubmit(){
 	document.myform.content.value = hiscore;
 }
-
 </script>
 </html>
-

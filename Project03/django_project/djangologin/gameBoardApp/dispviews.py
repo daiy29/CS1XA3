@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Post
+from django.db.models.functions import Length
 
 # Create your views here.
 
@@ -16,7 +17,7 @@ def createpost(request):
         else:
                 return render(request,'gameBoardApp/playgame.html')
 
-def showboard(request): 
-    allscores= Post.objects.all()
-    context= {'allscores': allscores}
-    return render(request, 'gameBoardApp/scoreboard.html', context)
+def showboard(request):
+    allrows = Post.objects.all().values('title','content').order_by(Length('content').desc(), '-content').exclude(content=0)
+    context={'allrows': allrows}
+    return render(request, 'gameBoardApp/scoreboard.html',context)
