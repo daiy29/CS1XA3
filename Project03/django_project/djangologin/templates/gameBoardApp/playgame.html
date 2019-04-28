@@ -14,13 +14,16 @@
 </header></div>
 <div>
 <div class="container text-center">
+<!-- Brief instructions -->
 <p>Type The Given Word Within <span id="seconds" class="badge badge-danger">2</span> Seconds:</p>
 <h2 id="current" class="strong">hello</h2>
   <br>
 <input id="input" class="form-control form-control-lg" type="text" autofocus="" placeholder="Start typing..." />
 <h3 id="msg" class="mt-3">&nbsp;</h3>
 <br>
-<!-- Time & Score Columns -->
+
+<!-- Id for things that will update -->
+
 <h4>Time Left: <span id="time">0</span> &nbsp;&nbsp; Score: <span id="score">0</span> &nbsp;&nbsp; Attempts: <span id="retryscore">1</span> &nbsp;&nbsp; Highscore: <span id="highscore">0</span></h4>
   
   
@@ -49,6 +52,8 @@
 
 
 <script>
+// variable declaration 
+
 window.onload = init;
 var input = document.querySelector('#input');
 var current = document.querySelector('#current');
@@ -64,7 +69,10 @@ var points = 0;
 var inGame = 1;
 var retries = 1;
 var hiscore = 0;
-var list1 = [
+
+//pre-generated list of words
+
+var list1 = [ 
 'Cat',
 'Doug',
 'Easy',
@@ -137,6 +145,8 @@ var list6 = [
 'sunt in culpa qui officia deserunt mollit anim id est laborum.'
 ];
 var currentList = list1;
+
+
 function init()
 {
   seconds.innerHTML = bonusTime;
@@ -144,17 +154,20 @@ function init()
   input.addEventListener('input', play);
   setInterval(timer, 1000);
   setInterval(play, 100);
+
+// updates the time that you have on this level, displays current word, and starts. The timer ticks every 1000 ms = 1 second, and a win condition is checked ever 0.1s
+
 }
 function play()
 {
-	if(inGame == 1)
+	if(inGame == 1) //if user has not lost, check if they win, update their points, and adjust difficulty accordingly.
 	{
 		checkWin();
 		score.innerHTML = points;
 		diffAdjust();
 	}
 	else{
-		checkHiScore();
+		checkHiScore(); //otherwise, check for a highscore, update highscore, then reset and update retries if the current word is entered. Reset variables
             highscore.innerHTML = hiscore;
 		reset();
 		if (input.value === current.innerHTML){
@@ -165,19 +178,19 @@ function play()
 		}
 	}
 }
-function showList(wordList)
+function showList(wordList) //display words
 {
-	var item = Math.floor(Math.random()*wordList.length);
-	current.innerHTML = wordList[item];
+	var item = Math.floor(Math.random()*wordList.length); //choose random index in list of words
+	current.innerHTML = wordList[item]; //display word
 }
-function reset()
+function reset() //reset variables
 {
 	bonusTime = 1;
 	points = 0;
 	currentList = list1;
 	msg.innerHTML = 'Game Over';
 }
-function diffAdjust()
+function diffAdjust() //adjust difficulty. Check point value to update list of words
 {
 	if(points >= 10 && points < 20){
 		currentList = list2;
@@ -199,12 +212,12 @@ function diffAdjust()
 		bonusTime = 4;
 	}	
 }
-function updateMessage(){
+function updateMessage(){ // when difficulty is increased / wordlist is updated, update message.
 		if ((points == 10) || (points == 20) || (points == 30) || (points == 40) || (points == 60))
 		{
 			msg.innerHTML = 'Difficulty increased!';
 		}
-		else{
+		else{ //display random message for correct input. 
 			var rngmsg = Math.floor(Math.random()*3);
 				if (rngmsg == 1)
 			msg.innerHTML = 'Noice';
@@ -216,18 +229,18 @@ function updateMessage(){
 }
 function timer()
 {
-	if (time > 0 && inGame == 1){
+	if (time > 0 && inGame == 1){ //if still in game, have time decrease by 1 every second
 		time--;
 	}
-	else if (time == 0){
+	else if (time == 0){ //if time is at 0, end the game. The user has lost
 		inGame = 0;
 	}
-	countDown.innerHTML = time;
+	countDown.innerHTML = time; //update time
 }
-function checkWin()
+function checkWin() 
 {
-	if (input.value === current.innerHTML) {
-		points++;
+	if (input.value === current.innerHTML) { //check if inputted word matches word in list
+		points++; //add points, add time, reset input value, update word list, update display of time and message
 		time += bonusTime;
 		input.value = '';
 		showList(currentList);
@@ -237,11 +250,11 @@ function checkWin()
 }
 function checkHiScore()
 {
-	if (points > hiscore){
+	if (points > hiscore){ //update high score if this runs score is greater than overall highscore
 		hiscore = points;
 	}
 }
-function DoSubmit(){
+function DoSubmit(){ //submit score
 	document.myform.content.value = hiscore;
 }
 </script>

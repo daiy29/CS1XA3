@@ -1,6 +1,6 @@
-{% extends "loginapp/base.html" %}
+{% extends "loginapp/base.html" %} <!-- "Added on" to navigation bar -->
 {% block body_block %}
-
+<!-- Home page, with a background. Displays message to either log in, or displays welcome message -->
 <body style="background-image: url(https://i.imgur.com/hXm7PaF.png); background-repeat: no-repeat; background-size: cover;">
     {% if user.is_authenticated %}
   <h1 style="color:white; font-family:Helvetica; font-size:600%; font-weight:900; position: absolute; left: 0; top: 30%; width: 100%; text-align: center;">Welcome to my website {{ user.username }} !<br> You can nagivate using the navigation bar. </h1>

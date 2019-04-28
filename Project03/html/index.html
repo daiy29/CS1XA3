@@ -1,0 +1,11 @@
+{% extends "loginapp/base.html" %}
+{% block body_block %}
+
+<body style="background-image: url(https://i.imgur.com/hXm7PaF.png); background-repeat: no-repeat; background-size: cover;">
+    {% if user.is_authenticated %}
+  <h1 style="color:white; font-family:Helvetica; font-size:600%; font-weight:900; position: absolute; left: 0; top: 30%; width: 100%; text-align: center;">Welcome to my website {{ user.username }} !<br> You can nagivate using the navigation bar. </h1>
+    {% else %}
+  <h1 style="color:white; font-family:Helvetica; font-size:600%; font-weight:900; position:absolute; left:0; top:30%; width: 100%; text-align: center;">Please log in using the nagivation bar.</h1>
+    {% endif %}
+</body>
+{% endblock %}

@@ -1,10 +1,11 @@
-    
+<!-- Extended from navbar -->    
 {% extends 'loginapp/base.html' %}
 {% load staticfiles %}
 {% block body_block %}
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+<!-- CSS for page's registration form. Modify values to change visual of form -->
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 input[type=text], select, textarea {
@@ -58,6 +59,7 @@ input[type=submit]:hover {
         <h1 style="color: white">Thank you for registering!</h1>
         </center>
       {% else %}
+<!-- Post request to register w/ userform -->
           <form enctype="multipart/form-data" method="POST">
           {% csrf_token %}
           {{ user_form.as_p }}

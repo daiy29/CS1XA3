@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+</head>
+
+<div><header class="bg-light text-center p-3 mb-5">
+<h1 class="text-dark">Leaderboard</h1>
+</header></div>
+
+  <table class="table text-center">
+    <tr>
+      <th scope="col"> Alias </th>
+      <th scope="col"> Score </th>
+    </tr>
+    {% for row in allrows%}
+    <tr>
+	<td>{{ row.title }}</td>
+        <td>{{ row.content }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</html>
